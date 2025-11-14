@@ -1,0 +1,34 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero-background",
+      "description": "A robotic arm in a modern workshop.",
+      "imageUrl": "https://images.unsplash.com/photo-1535378273068-9bb67d5beacd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cm9ib3QlMjBhcm18ZW58MHx8fHwxNzYyODc0Njk0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "robot arm"
+    },
+    {
+      "id": "about-image",
+      "description": "Close-up of intricate machine gears.",
+      "imageUrl": "https://images.unsplash.com/photo-1704109505135-fa76ea671525?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxnZWFycyUyMG1hY2hpbmV8ZW58MHx8fHwxNzYyODg0MDY5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "gears machine"
+    },
+    {
+      "id": "testimonial-1",
+      "description": "Portrait of a smiling customer.",
+      "imageUrl": "https://images.unsplash.com/photo-1533147670608-2a2f9775d3a4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxoYXBweSUyMHBlcnNvbnxlbnwwfHx8fDE3NjI4NDE1OTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "happy person"
+    },
+    {
+      "id": "testimonial-2",
+      "description": "Portrait of a satisfied female client.",
+      "imageUrl": "https://images.unsplash.com/photo-1662850886700-4ec19bd30d11?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzbWlsaW5nJTIwd29tYW58ZW58MHx8fHwxNzYyODgxODQ5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "smiling woman"
+    },
+    {
+      "id": "testimonial-3",
+      "description": "Portrait of a satisfied male client.",
+      "imageUrl": "https://images.unsplash.com/photo-1703759354720-dfab961fe2d8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxzYXRpc2ZpZWQlMjBtYW58ZW58MHx8fHwxNzYyODc4MTI5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "satisfied man"
+    }
+  ]
+}
