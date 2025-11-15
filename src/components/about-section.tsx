@@ -1,6 +1,5 @@
 import { Cog, Zap, Target } from "lucide-react";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { Card, CardHeader, CardTitle, CardDescription } from "./ui/card";
 
 const features = [
   {
