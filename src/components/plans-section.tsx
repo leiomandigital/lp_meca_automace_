@@ -56,7 +56,7 @@ const plans = [
 
 export function PlansSection() {
   return (
-    <section id="plans" className="py-24 sm:py-32 bg-secondary/30">
+    <section id="plans" className="py-24 sm:py-32 bg-secondary/30 overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="font-headline text-4xl font-bold text-primary sm:text-5xl">

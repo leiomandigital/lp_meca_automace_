@@ -5,7 +5,7 @@ export function Logo() {
       alt="Meca Automace"
       width={240}
       height={53}
-      className="h-14 w-auto"
+      className="h-20 w-auto"
     />
   );
 }

@@ -108,7 +108,7 @@ export function ContactForm() {
 
 export function ContactSection() {
   return (
-    <section id="contact" className="py-24 sm:py-32 bg-secondary/30">
+    <section id="contact" className="py-24 sm:py-32 bg-secondary/30 overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div className="flex flex-col justify-center">

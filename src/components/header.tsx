@@ -31,7 +31,7 @@ export function Header() {
       section.scrollIntoView({ behavior: "smooth" });
     }
     setMobileMenuOpen(false);
-  };
+  }
 
   return (
     <header
@@ -40,7 +40,7 @@ export function Header() {
         isScrolled ? "bg-background/80 backdrop-blur-sm shadow-md" : "bg-transparent"
       )}
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 max-w-full">
         <div className="flex h-20 items-center justify-between">
           <a href="#home" onClick={(e) => handleLinkClick(e, "home")}>
             <Logo />
@@ -75,7 +75,7 @@ export function Header() {
                 </Button>
               </SheetTrigger>
               <SheetContent side="left" className="w-[300px] sm:w-[400px]">
-                <div className="p-4">
+                {/* <div className="p-4"> */}
                   <div className="flex justify-between items-center mb-8">
                     <Logo />
                     <SheetTrigger asChild>
@@ -100,7 +100,7 @@ export function Header() {
                       <a href="#contact" onClick={(e) => handleLinkClick(e, "contact")}>Solicitar Orçamento</a>
                     </Button>
                   </nav>
-                </div>
+                {/* </div> */}
               </SheetContent>
             </Sheet>
           </div>
