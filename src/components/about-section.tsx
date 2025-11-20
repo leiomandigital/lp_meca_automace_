@@ -4,21 +4,21 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 const features = [
   {
     icon: <Zap className="h-8 w-8 text-accent" />,
-    title: "Eficiência Inigualável",
+    title: "Automatize Processos Repetitivos",
     description:
-      "Otimize suas operações e aumente a produtividade com nossa automação de ponta.",
+      "Elimine tarefas manuais e libere sua equipe para atividades estratégicas. Ganhe tempo e reduza erros operacionais.",
   },
   {
     icon: <Target className="h-8 w-8 text-accent" />,
-    title: "Engenharia de Precisão",
+    title: "Integração Entre Sistemas",
     description:
-      "Experimente uma execução impecável com sistemas projetados para precisão e confiabilidade.",
+      "Conecte suas ferramentas e plataformas em fluxos inteligentes. Dados sincronizados automaticamente, sem retrabalho.",
   },
   {
     icon: <Cog className="h-8 w-8 text-accent" />,
-    title: "Soluções Escaláveis",
+    title: "Soluções Sob Medida",
     description:
-      "Nossos serviços crescem com você, fornecendo uma estrutura flexível para suas necessidades em evolução.",
+      "Desenvolvemos automações personalizadas para seu negócio. Escaláveis, seguras e alinhadas aos seus objetivos.",
   },
 ];
 
@@ -26,16 +26,19 @@ export function AboutSection() {
   const aboutImage = PlaceHolderImages.find((p) => p.id === "about-image");
 
   return (
-    <section id="about" className="py-24 sm:py-32 bg-background overflow-hidden">
+    <section
+      id="about"
+      className="py-24 sm:py-32 bg-background overflow-hidden"
+    >
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="font-headline text-4xl font-bold text-primary sm:text-5xl">
-            O Futuro da Automação
+            Por que automatizar seus processos?
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-            Dedicamo-nos a revolucionar indústrias por meio da automação
-            inteligente, fornecendo soluções robustas e inovadoras que
-            impulsionam o sucesso.
+            Transformamos operações complexas em fluxos automatizados. Reduza
+            custos, aumente eficiência e escale seu negócio com inteligência e
+            tecnologia.
           </p>
         </div>
 
@@ -59,14 +62,11 @@ export function AboutSection() {
           </div>
 
           <div className="flex items-center justify-center">
-            {aboutImage && (
-              <img
-                src={aboutImage.imageUrl}
-                alt={aboutImage.description}
-                className="rounded-lg shadow-2xl object-cover aspect-[3/2] w-full h-auto"
-                data-ai-hint={aboutImage.imageHint}
-              />
-            )}
+            <img
+              src="/automacao-processos.jpg"
+              alt="Automação de processos empresariais"
+              className="rounded-lg shadow-2xl object-cover aspect-[3/2] w-full h-auto"
+            />
           </div>
         </div>
       </div>

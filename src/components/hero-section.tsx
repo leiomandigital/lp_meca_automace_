@@ -24,41 +24,40 @@ export function HeroSection() {
   return (
     <section id="home" className="relative h-screen w-full overflow-hidden">
       <div className="absolute inset-0">
-        {heroImage && (
-          <img
-            src={heroImage.imageUrl}
-            alt={heroImage.description}
-            className="object-cover w-full h-full"
-            data-ai-hint={heroImage.imageHint}
-          />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-background/10 to-background/90" />
+        <img
+          src="/hero-background.jpg"
+          alt="Automação inteligente"
+          className="object-cover w-full h-full"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-background/80" />
       </div>
       <div className="relative z-10 flex h-full items-center justify-center">
         <div className="container mx-auto px-4 text-center">
           <div className="container mx-auto px-4 pt-32 text-center sm:pt-0 max-w-full">
-            <h1 className="font-headline text-4xl font-bold tracking-tight text-primary-foreground sm:text-5xl md:text-6xl lg:text-7xl drop-shadow-lg">
-              Automate. Innovate. Dominate.
+            <h1 className="font-headline text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl drop-shadow-[0_4px_20px_rgba(0,0,0,0.8)]">
+              Automatize. Inove. Domine.
             </h1>
-            <p className="mt-6 max-w-2xl mx-auto text-lg text-primary-foreground/90 sm:text-xl drop-shadow-md">
-              Meca Automace delivers cutting-edge automation solutions to propel
-              your business into the future. Efficiency and precision, redefined.
+            <p className="mt-6 max-w-2xl mx-auto text-lg text-white sm:text-xl drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+              Transformamos seus processos manuais em fluxos automatizados
+              inteligentes. Aumente a produtividade, reduza custos e escale seu
+              negócio com automação de processos de ponta.
             </p>
             <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-x-6">
               {/* <Button size="lg" asChild>
-              <a href="#plans">Explore Plans</a>
+              <a href="#plans">Conheça Nossas Soluções</a>
             </Button>
             <Button size="lg" variant="outline" asChild className="bg-white/10 text-white backdrop-blur-sm border-white/20 hover:bg-white/20">*/}
 
-              {/* Wrapper for the animated "Explore Plans" button */}
+              {/* Wrapper for the animated "Conheça Nossas Soluções" button */}
               <div
-                className={`w-full sm:w-auto transition-all duration-300 ease-in-out ${isScrolled
+                className={`w-full sm:w-auto transition-all duration-300 ease-in-out ${
+                  isScrolled
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-5 sm:opacity-100 sm:translate-y-0"
-                  }`}
+                }`}
               >
                 <Button size="lg" asChild className="w-full sm:w-auto">
-                  <a href="#plans">Explore Plans</a>
+                  <a href="#plans">Conheça Nossas Soluções</a>
                 </Button>
               </div>
               {/* "Contact Sales" button, now hidden on mobile */}
@@ -68,7 +67,7 @@ export function HeroSection() {
                 asChild
                 className="bg-white/10 text-white backdrop-blur-sm border-white/20 hover:bg-white/20 hidden sm:flex"
               >
-                <a href="#contact">Contact Sales</a>
+                <a href="#contact">Solicitar Diagnóstico Gratuito</a>
               </Button>
             </div>
           </div>
