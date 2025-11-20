@@ -63,7 +63,7 @@ export function AboutSection() {
             <img
               src="/automacao-processos.jpg"
               alt="Automação de processos empresariais"
-              className="rounded-lg shadow-2xl object-cover aspect-[3/2] w-full h-auto"
+              className="rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300 object-cover aspect-[3/2] w-full h-auto"
             />
           </div>
         </div>

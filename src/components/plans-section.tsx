@@ -12,85 +12,117 @@ import { cn } from "@/lib/utils";
 
 const plans = [
   {
-    name: "Iniciante",
-    price: "R$49",
+    name: "Essencial",
+    price: "R$ 169,90",
     pricePeriod: "/mês",
-    description: "Para pequenas equipes e startups que estão começando com automação.",
+    description:
+      "Ideal para pequenas empresas que estão começando com automação.",
     features: [
-      "Fluxos de Automação Básicos",
-      "Até 1.000 Operações",
-      "Suporte Comunitário",
-      "1 Usuário",
+      "1 automação simples",
+      "Integração com Google Sheets/NocoDB",
+      "Melhorias 1x por mês",
+      "Suporte via e-mail e WhatsApp",
     ],
     isPopular: false,
+    isSubscription: true,
   },
   {
-    name: "Profissional",
-    price: "R$99",
+    name: "Avançada",
+    price: "R$ 269,90",
     pricePeriod: "/mês",
-    description: "Para empresas em crescimento que precisam de mais poder e flexibilidade.",
+    description:
+      "Para empresas que precisam de mais automações e inteligência artificial.",
     features: [
-      "Fluxos de Automação Avançados",
-      "Até 10.000 Operações",
-      "Suporte por E-mail e Chat",
-      "5 Usuários",
-      "Acesso à API",
+      "Até 3 automações simples ou 1 com IA",
+      "Integrações básicas incluídas",
+      "Melhorias até 3x por mês",
+      "Suporte via e-mail e WhatsApp",
     ],
     isPopular: true,
+    isSubscription: true,
   },
   {
-    name: "Empresarial",
-    price: "Personalizado",
-    pricePeriod: "",
-    description: "Para grandes organizações com necessidades personalizadas e requisitos de escalonamento.",
+    name: "Premium",
+    price: "R$ 749,90",
+    pricePeriod: "/mês",
+    description:
+      "Solução completa para empresas que precisam de automação em escala.",
     features: [
-      "Soluções de Automação Personalizadas",
-      "Operações Ilimitadas",
-      "Gerente de Contas Dedicado",
-      "Usuários Ilimitados",
-      "Implantação Local",
+      "Automações e integrações ilimitadas (CRM, ERP, APIs, N8N,...)",
+      "IA própria",
+      "Melhorias sempre que necessário",
+      "Suporte prioritário via e-mail e WhatsApp",
     ],
     isPopular: false,
+    isSubscription: true,
+  },
+  {
+    name: "Desenvolvimento Personalizado",
+    price: "A partir de R$ 1.500",
+    pricePeriod: "/projeto",
+    description:
+      "Pagamento único para projetos específicos. Você mantém total controle.",
+    features: [
+      "Fluxo simples: R$ 1.500",
+      "Fluxo com IA: R$ 3.000",
+      "Automação vinculada à sua conta",
+      "Você assume gestão após 30 dias",
+      "Custos de plataformas por sua conta",
+    ],
+    isPopular: false,
+    isSubscription: false,
   },
 ];
 
 export function PlansSection() {
   return (
-    <section id="plans" className="py-24 sm:py-32 bg-secondary/30 overflow-hidden">
+    <section
+      id="plans"
+      className="py-24 sm:py-32 bg-secondary/30 overflow-hidden"
+    >
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="font-headline text-4xl font-bold text-primary sm:text-5xl">
-            Planos de Preços
+            Planos de Automação
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-            Escolha o plano perfeito para o seu negócio. Todos os planos vêm com nosso 
-            compromisso com a excelência.
+            Escolha o plano ideal para automatizar seus processos. Assinatura
+            mensal sem setup ou desenvolvimento único com autonomia total.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
           {plans.map((plan) => (
             <Card
               key={plan.name}
               className={cn(
-                "flex flex-col",
-                plan.isPopular && "border-primary ring-2 ring-primary shadow-lg"
+                "flex flex-col shadow-xl hover:shadow-2xl transition-shadow duration-300",
+                plan.isPopular && "border-primary ring-2 ring-primary"
               )}
             >
               <CardHeader>
+                {plan.isPopular && (
+                  <div className="text-xs font-semibold text-primary mb-2">
+                    MAIS POPULAR
+                  </div>
+                )}
                 <CardTitle className="font-headline">{plan.name}</CardTitle>
-                <CardDescription>{plan.description}</CardDescription>
+                <CardDescription className="min-h-[3rem]">
+                  {plan.description}
+                </CardDescription>
               </CardHeader>
               <CardContent className="flex-grow">
                 <div className="mb-6">
-                  <span className="text-4xl font-bold">{plan.price}</span>
-                  <span className="text-muted-foreground">{plan.pricePeriod}</span>
+                  <span className="text-3xl font-bold">{plan.price}</span>
+                  <span className="text-muted-foreground">
+                    {plan.pricePeriod}
+                  </span>
                 </div>
                 <ul className="space-y-3">
                   {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-center gap-2">
-                      <Check className="h-5 w-5 text-green-500" />
-                      <span>{feature}</span>
+                    <li key={feature} className="flex items-start gap-2">
+                      <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
+                      <span className="text-sm">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -100,7 +132,9 @@ export function PlansSection() {
                   className="w-full"
                   variant={plan.isPopular ? "default" : "outline"}
                 >
-                  {plan.name === 'Empresarial' ? 'Fale Conosco' : 'Comece Agora'}
+                  {plan.isSubscription
+                    ? "Assinar Agora"
+                    : "Solicitar Orçamento"}
                 </Button>
               </CardFooter>
             </Card>

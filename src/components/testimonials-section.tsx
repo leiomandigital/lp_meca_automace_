@@ -42,10 +42,10 @@ export function TestimonialsSection() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="font-headline text-4xl font-bold text-primary sm:text-5xl">
-            Loved by Businesses Worldwide
+            O que dizem sobre nós
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-            Don't just take our word for it. Here's what our clients have to say.
+            Não acredite apenas na nossa palavra. Veja o que nossos clientes têm a dizer.
           </p>
         </div>
         
