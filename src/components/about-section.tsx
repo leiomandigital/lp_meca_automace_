@@ -1,5 +1,4 @@
 import { Cog, Zap, Target } from "lucide-react";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const features = [
   {
@@ -23,7 +22,6 @@ const features = [
 ];
 
 export function AboutSection() {
-  const aboutImage = PlaceHolderImages.find((p) => p.id === "about-image");
 
   return (
     <section

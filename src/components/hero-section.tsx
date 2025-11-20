@@ -1,10 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 export function HeroSection() {
-  const heroImage = PlaceHolderImages.find((p) => p.id === "hero-background");
 
   // State to track if the page has been scrolled
   const [isScrolled, setIsScrolled] = useState(false);
