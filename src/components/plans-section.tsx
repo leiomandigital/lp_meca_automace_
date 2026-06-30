@@ -1,144 +1,119 @@
-import { Check } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
+import { Check, Code2, Wrench, Zap } from "lucide-react";
+import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
+import type { LucideIcon } from "lucide-react";
 
-const plans = [
+interface Service {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  deliverables: string[];
+  highlight: boolean;
+}
+
+const services: Service[] = [
   {
-    name: "Essencial",
-    price: "R$ 169,90",
-    pricePeriod: "/mês",
+    icon: Code2,
+    title: "Desenvolvimento PWA & Low-Code",
     description:
-      "Ideal para pequenas empresas que estão começando com automação.",
-    features: [
-      "1 automação simples",
-      "Integração com Google Sheets/NocoDB",
-      "Melhorias 1x por mês",
-      "Suporte via e-mail e WhatsApp",
+      "Aplicações web progressivas e sistemas customizados com ferramentas low-code, entregando rápido sem abrir mão da qualidade.",
+    deliverables: [
+      "Levantamento de requisitos",
+      "UI responsiva para web e mobile",
+      "Integração com APIs e bancos de dados",
+      "Deploy e documentação entregue",
     ],
-    isPopular: false,
-    isSubscription: true,
+    highlight: false,
   },
   {
-    name: "Avançada",
-    price: "R$ 269,90",
-    pricePeriod: "/mês",
+    icon: Wrench,
+    title: "Manutenção e Evolução de Portais",
     description:
-      "Para empresas que precisam de mais automações e inteligência artificial.",
-    features: [
-      "Até 3 automações simples ou 1 com IA",
-      "Integrações básicas incluídas",
-      "Melhorias até 3x por mês",
-      "Suporte via e-mail e WhatsApp",
+      "Cuidado contínuo do seu sistema web — correções, melhorias de performance, novas funcionalidades e estabilidade em produção.",
+    deliverables: [
+      "Análise do código existente",
+      "Correção de bugs e falhas",
+      "Evolução incremental por demanda",
+      "Monitoramento e suporte técnico",
     ],
-    isPopular: true,
-    isSubscription: true,
+    highlight: true,
   },
   {
-    name: "Premium",
-    price: "R$ 749,90",
-    pricePeriod: "/mês",
+    icon: Zap,
+    title: "Automação de Processos",
     description:
-      "Solução completa para empresas que precisam de automação em escala.",
-    features: [
-      "Automações e integrações ilimitadas (CRM, ERP, APIs, N8N,...)",
-      "IA própria",
-      "Melhorias sempre que necessário",
-      "Suporte prioritário via e-mail e WhatsApp",
+      "Fluxos inteligentes com n8n, Make e IA para eliminar tarefas repetitivas e conectar seus sistemas sem esforço manual.",
+    deliverables: [
+      "Mapeamento do processo atual",
+      "Integração entre plataformas",
+      "Agentes de IA conversacional",
+      "Relatórios e alertas automáticos",
     ],
-    isPopular: false,
-    isSubscription: true,
-  },
-  {
-    name: "Desenvolvimento Personalizado",
-    price: "A partir de R$ 1.500",
-    pricePeriod: "/projeto",
-    description:
-      "Pagamento único para projetos específicos. Você mantém total controle.",
-    features: [
-      "Fluxo simples: R$ 1.500",
-      "Fluxo com IA: R$ 3.000",
-      "Automação vinculada à sua conta",
-      "Você assume gestão após 30 dias",
-      "Custos de plataformas por sua conta",
-    ],
-    isPopular: false,
-    isSubscription: false,
+    highlight: false,
   },
 ];
 
 export function PlansSection() {
   return (
     <section
-      id="plans"
+      id="services"
       className="py-24 sm:py-32 bg-secondary/30 overflow-hidden"
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
+          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-accent/10 text-accent border border-accent/20 mb-4">
+            Serviços
+          </span>
           <h2 className="font-headline text-4xl font-bold text-primary sm:text-5xl">
-            Planos de Automação
+            Como Posso Ajudar
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-            Escolha o plano ideal para automatizar seus processos. Assinatura
-            mensal sem setup ou desenvolvimento único com autonomia total.
+            Prestação de serviço focada em manutenção, desenvolvimento de
+            aplicações PWA low-code e automação de processos.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-          {plans.map((plan) => (
-            <Card
-              key={plan.name}
-              className={cn(
-                "flex flex-col shadow-xl hover:shadow-2xl transition-shadow duration-300",
-                plan.isPopular && "border-primary ring-2 ring-primary"
-              )}
-            >
-              <CardHeader>
-                {plan.isPopular && (
-                  <div className="text-xs font-semibold text-primary mb-2">
-                    MAIS POPULAR
-                  </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          {services.map((service) => {
+            const Icon = service.icon;
+            return (
+              <Card
+                key={service.title}
+                className={cn(
+                  "flex flex-col shadow-lg hover:shadow-xl transition-shadow duration-300",
+                  service.highlight && "border-primary ring-2 ring-primary"
                 )}
-                <CardTitle className="font-headline">{plan.name}</CardTitle>
-                <CardDescription className="min-h-[3rem]">
-                  {plan.description}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <div className="mb-6">
-                  <span className="text-3xl font-bold">{plan.price}</span>
-                  <span className="text-muted-foreground">
-                    {plan.pricePeriod}
-                  </span>
-                </div>
-                <ul className="space-y-3">
-                  {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2">
-                      <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
-                      <span className="text-sm">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-              <CardFooter>
-                <Button
-                  className="w-full"
-                  variant={plan.isPopular ? "default" : "outline"}
-                >
-                  {plan.isSubscription
-                    ? "Assinar Agora"
-                    : "Solicitar Orçamento"}
-                </Button>
-              </CardFooter>
-            </Card>
-          ))}
+              >
+                <CardContent className="p-6 flex flex-col h-full">
+                  <div className="flex-shrink-0 bg-accent/10 p-3 rounded-full w-fit mb-4">
+                    <Icon className="h-6 w-6 text-accent" />
+                  </div>
+                  <h3 className="font-headline text-xl font-bold text-primary leading-snug mb-2">
+                    {service.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-5">
+                    {service.description}
+                  </p>
+                  <ul className="space-y-2 flex-1 mb-6">
+                    {service.deliverables.map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-sm">
+                        <Check className="h-4 w-4 text-green-500 flex-shrink-0 mt-0.5" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <Button
+                    className="w-full mt-auto"
+                    variant={service.highlight ? "default" : "outline"}
+                    asChild
+                  >
+                    <a href="#contact">Solicitar Orçamento</a>
+                  </Button>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
       </div>
     </section>
