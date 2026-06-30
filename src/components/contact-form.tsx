@@ -7,13 +7,15 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Label } from "./ui/label";
 
+const WEBHOOK_URL =
+  "https://nwh.mecaautomace.com.br/webhook/215235e8-c524-4d81-8958-4fe088aa668e";
+
 export function ContactForm() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitting(true);
 
     const formData = new FormData(e.currentTarget);
     const data = {
@@ -23,58 +25,56 @@ export function ContactForm() {
       message: formData.get("message") as string,
     };
 
-    // Validação simples
     if (!data.name || data.name.length < 2) {
-      toast({
-        title: "Erro",
-        description: "Nome deve ter pelo menos 2 caracteres.",
-        variant: "destructive",
-      });
-      setIsSubmitting(false);
+      toast({ title: "Erro", description: "Nome deve ter pelo menos 2 caracteres.", variant: "destructive" });
       return;
     }
-
     if (!data.email || !data.email.includes("@")) {
-      toast({
-        title: "Erro",
-        description: "Digite um e-mail válido.",
-        variant: "destructive",
-      });
-      setIsSubmitting(false);
+      toast({ title: "Erro", description: "Digite um e-mail válido.", variant: "destructive" });
       return;
     }
-
     if (!data.subject || data.subject.length < 5) {
-      toast({
-        title: "Erro",
-        description: "Assunto deve ter pelo menos 5 caracteres.",
-        variant: "destructive",
-      });
-      setIsSubmitting(false);
+      toast({ title: "Erro", description: "Assunto deve ter pelo menos 5 caracteres.", variant: "destructive" });
       return;
     }
-
     if (!data.message || data.message.length < 10) {
-      toast({
-        title: "Erro",
-        description: "Mensagem deve ter pelo menos 10 caracteres.",
-        variant: "destructive",
-      });
-      setIsSubmitting(false);
+      toast({ title: "Erro", description: "Mensagem deve ter pelo menos 10 caracteres.", variant: "destructive" });
       return;
     }
 
-    // Simula envio (aqui você conectaria com sua API)
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    console.log("Formulário enviado:", data);
+    setIsSubmitting(true);
 
-    toast({
-      title: "Sucesso!",
-      description: "Obrigado pela sua mensagem! Entraremos em contato em breve.",
-    });
+    try {
+      const response = await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Webhook-Token": "3v:XSN338iM",
+        },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          subject: data.subject,
+          message: data.message,
+        }),
+      });
 
-    e.currentTarget.reset();
-    setIsSubmitting(false);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+      toast({
+        title: "Mensagem enviada!",
+        description: "Obrigado pelo contato. Responderemos em breve.",
+      });
+      (e.target as HTMLFormElement).reset();
+    } catch {
+      toast({
+        title: "Erro ao enviar",
+        description: "Não foi possível enviar a mensagem. Tente novamente ou nos contate pelo WhatsApp.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -116,7 +116,7 @@ export function ContactSection() {
               Vamos Construir Juntos
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              Tem um projeto em mente ou apenas quer saber mais sobre nossos serviços? 
+              Tem um projeto em mente ou apenas quer saber mais sobre nossos serviços?
               Escreva para nós. Estamos aqui para responder às suas perguntas e explorar como podemos ajudá-lo a ter sucesso.
             </p>
           </div>

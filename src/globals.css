@@ -22,8 +22,8 @@
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
  
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 35 91% 52%;
+    --accent-foreground: 0 0% 98%;
  
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
@@ -54,8 +54,8 @@
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
  
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 35 91% 52%;
+    --accent-foreground: 0 0% 98%;
  
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
@@ -99,3 +99,51 @@ html, body {
 #root {
   overflow-x: hidden;
 }
+
+/* ── Hero blur-in animations ── */
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.hero-animate {
+  opacity: 0;
+  animation: hero-fade-up 0.75s ease forwards;
+}
+
+.hero-delay-1 { animation-delay: 0.05s; }
+.hero-delay-2 { animation-delay: 0.28s; }
+.hero-delay-3 { animation-delay: 0.50s; }
+.hero-delay-4 { animation-delay: 0.72s; }
+
+/* ── Testimonial infinite-scroll columns ── */
+@keyframes testimonial-scroll {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
+}
+
+.testimonial-col-1 { animation: testimonial-scroll 20s linear infinite; }
+.testimonial-col-2 { animation: testimonial-scroll 26s linear infinite; }
+.testimonial-col-3 { animation: testimonial-scroll 23s linear infinite; }
+
+.testimonials-grid:hover .testimonial-col-1,
+.testimonials-grid:hover .testimonial-col-2,
+.testimonials-grid:hover .testimonial-col-3 {
+  animation-play-state: paused;
+}
+
+/* ── Accent pulse for primary CTAs ── */
+@keyframes accent-pulse {
+  0%,  100% { box-shadow: 0 0 0 0   hsla(35, 91%, 52%, 0); }
+  50%        { box-shadow: 0 0 0 9px hsla(35, 91%, 52%, 0.32); }
+}
+
+.btn-pulse { animation: accent-pulse 2.6s ease infinite; }
