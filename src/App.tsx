@@ -1,6 +1,7 @@
 import { Header } from "@/components/header";
 import { HeroSection } from "@/components/hero-section";
 import { AboutSection } from "@/components/about-section";
+import { PartnersSection } from "@/components/partners-section";
 import { ProjectsSection } from "@/components/projects-section";
 import { PlansSection } from "@/components/plans-section";
 import { TestimonialsSection } from "@/components/testimonials-section";
@@ -15,8 +16,9 @@ export default function App() {
       <Header />
       <main>
         <HeroSection />
-        <AboutSection />
         <ProjectsSection />
+        <AboutSection />
+        <PartnersSection />
         <PlansSection />
         <TestimonialsSection />
         <CTASection />

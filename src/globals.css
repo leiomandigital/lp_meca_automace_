@@ -140,6 +140,18 @@ html, body {
   animation-play-state: paused;
 }
 
+/* ── Partners infinite-scroll marquee ── */
+@keyframes partners-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.partners-track { animation: partners-marquee 28s linear infinite; }
+
+.partners-marquee:hover .partners-track {
+  animation-play-state: paused;
+}
+
 /* ── Accent pulse for primary CTAs ── */
 @keyframes accent-pulse {
   0%,  100% { box-shadow: 0 0 0 0   hsla(35, 91%, 52%, 0); }
