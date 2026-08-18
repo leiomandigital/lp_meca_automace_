@@ -2,13 +2,13 @@ import { useState, useEffect, type MouseEvent } from "react";
 import { Menu, X } from "lucide-react";
 import { Logo } from "./logo";
 import { Button } from "./ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
+import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "./ui/sheet";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
   { id: "home", label: "Início" },
-  { id: "about", label: "Sobre" },
   { id: "projects", label: "Projetos" },
+  { id: "about", label: "Sobre" },
   { id: "services", label: "Serviços" },
   { id: "contact", label: "Contato" },
 ];
@@ -76,6 +76,10 @@ export function Header() {
                 </Button>
               </SheetTrigger>
               <SheetContent side="left" className="w-[300px] sm:w-[400px]">
+                <SheetTitle className="sr-only">Menu de navegação</SheetTitle>
+                <SheetDescription className="sr-only">
+                  Links de navegação do site Meca Automace
+                </SheetDescription>
                 {/* <div className="p-4"> */}
                   <div className="flex justify-between items-center mb-8">
                     <Logo />
