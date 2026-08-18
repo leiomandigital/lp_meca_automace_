@@ -9,12 +9,12 @@ const skillCategories = [
   },
   {
     label: "Desenvolvimento",
-    skills: ["PWA", "React Native", ".NET", "Angular", "Ruby on Rails"],
+    skills: ["React", "TypeScript", "Vue.js", "Laravel", "PWA", "React Native", ".NET", "Angular"],
     className: "bg-primary/10 text-primary border border-primary/20",
   },
   {
     label: "Banco de Dados",
-    skills: ["PostgreSQL", "SQL Server", "Transact-SQL"],
+    skills: ["PostgreSQL", "Supabase", "SQL Server", "Transact-SQL"],
     className: "bg-secondary text-secondary-foreground border border-border",
   },
   {
