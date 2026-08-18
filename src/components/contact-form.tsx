@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { useToast } from "@/hooks/use-toast";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
@@ -10,9 +9,14 @@ import { Label } from "./ui/label";
 const WEBHOOK_URL =
   "https://nwh.mecaautomace.com.br/webhook/215235e8-c524-4d81-8958-4fe088aa668e";
 
+type FormStatus =
+  | { type: "idle" }
+  | { type: "success"; message: string }
+  | { type: "error"; message: string };
+
 export function ContactForm() {
-  const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState<FormStatus>({ type: "idle" });
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,22 +30,23 @@ export function ContactForm() {
     };
 
     if (!data.name || data.name.length < 2) {
-      toast({ title: "Erro", description: "Nome deve ter pelo menos 2 caracteres.", variant: "destructive" });
+      setStatus({ type: "error", message: "Nome deve ter pelo menos 2 caracteres." });
       return;
     }
     if (!data.email || !data.email.includes("@")) {
-      toast({ title: "Erro", description: "Digite um e-mail válido.", variant: "destructive" });
+      setStatus({ type: "error", message: "Digite um e-mail válido." });
       return;
     }
     if (!data.subject || data.subject.length < 5) {
-      toast({ title: "Erro", description: "Assunto deve ter pelo menos 5 caracteres.", variant: "destructive" });
+      setStatus({ type: "error", message: "Assunto deve ter pelo menos 5 caracteres." });
       return;
     }
     if (!data.message || data.message.length < 10) {
-      toast({ title: "Erro", description: "Mensagem deve ter pelo menos 10 caracteres.", variant: "destructive" });
+      setStatus({ type: "error", message: "Mensagem deve ter pelo menos 10 caracteres." });
       return;
     }
 
+    setStatus({ type: "idle" });
     setIsSubmitting(true);
 
     try {
@@ -61,16 +66,15 @@ export function ContactForm() {
 
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
-      toast({
-        title: "Mensagem enviada!",
-        description: "Obrigado pelo contato. Responderemos em breve.",
+      setStatus({
+        type: "success",
+        message: "Mensagem enviada! Obrigado pelo contato. Responderemos em breve.",
       });
       (e.target as HTMLFormElement).reset();
     } catch {
-      toast({
-        title: "Erro ao enviar",
-        description: "Não foi possível enviar a mensagem. Tente novamente ou nos contate pelo WhatsApp.",
-        variant: "destructive",
+      setStatus({
+        type: "error",
+        message: "Não foi possível enviar a mensagem. Tente novamente ou nos contate pelo WhatsApp.",
       });
     } finally {
       setIsSubmitting(false);
@@ -97,6 +101,18 @@ export function ContactForm() {
         <Label htmlFor="message">Mensagem</Label>
         <Textarea id="message" name="message" placeholder="Sua mensagem..." rows={5} required />
       </div>
+      {status.type !== "idle" && (
+        <div
+          role="status"
+          className={
+            status.type === "success"
+              ? "rounded-md border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800"
+              : "rounded-md border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive"
+          }
+        >
+          {status.message}
+        </div>
+      )}
       <div>
         <Button type="submit" disabled={isSubmitting} className="w-full">
           {isSubmitting ? "Enviando..." : "Enviar Mensagem"}

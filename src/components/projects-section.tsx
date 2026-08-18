@@ -29,7 +29,7 @@ const projects: Project[] = [
     title: "Sistema de Gerenciamento de Consultas (SGC)",
     description:
       "Portal clínico para gestão de consultas, pacientes e agendamentos, em operação contínua.",
-    tags: ["Ruby on Rails", "PostgreSQL", "DevOps"],
+    tags: ["React", "TypeScript", "Supabase"],
     status: "Em produção",
     url: "https://sgc.mecaautomace.com.br",
   },
@@ -38,7 +38,7 @@ const projects: Project[] = [
     title: "Sistema de Controle para Cosméticos",
     description:
       "Solução personalizada para gestão de produtos e estoque no setor de beleza.",
-    tags: ["Low-Code", "PWA", "SaaS"],
+    tags: ["React", "PWA", "Supabase"],
     status: "Em desenvolvimento",
     url: "https://stockreal.mecaautomace.com.br",
   },
@@ -47,7 +47,7 @@ const projects: Project[] = [
     title: "Manutenção de Portal — Instituto DNZ",
     description:
       "Evolução contínua e manutenção do portal institutodnz.com.br, garantindo estabilidade, performance e novas funcionalidades.",
-    tags: ["Ruby on Rails", "PostgreSQL", "DevOps"],
+    tags: ["Laravel", "Vue.js", "PHP"],
     status: "Em produção",
     url: "https://institutodnz.com.br",
   },
