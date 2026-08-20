@@ -1,31 +1,31 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Header } from "@/components/header";
-import { HeroSection } from "@/components/hero-section";
-import { AboutSection } from "@/components/about-section";
-import { PartnersSection } from "@/components/partners-section";
-import { ProjectsSection } from "@/components/projects-section";
-import { PlansSection } from "@/components/plans-section";
-import { TestimonialsSection } from "@/components/testimonials-section";
-import { CTASection } from "@/components/cta-section";
-import { ContactSection } from "@/components/contact-form";
 import { Footer } from "@/components/footer";
 import { Toaster } from "@/components/ui/toaster";
+import { WhatsAppFloatButton } from "@/components/whatsapp-float-button";
+import { CartProvider } from "@/context/cart-context";
+import { HomePage } from "@/pages/home-page";
+import { LojaPage } from "@/pages/loja-page";
+import { ProdutoPage } from "@/pages/produto-page";
+import { ObrigadoPage } from "@/pages/obrigado-page";
 
 export default function App() {
   return (
-    <>
-      <Header />
-      <main>
-        <HeroSection />
-        <ProjectsSection />
-        <AboutSection />
-        <PartnersSection />
-        <PlansSection />
-        <TestimonialsSection />
-        <CTASection />
-        <ContactSection />
-      </main>
-      <Footer />
-      <Toaster />
-    </>
+    <BrowserRouter>
+      <CartProvider>
+        <Header />
+        <main className="flex-1">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/loja" element={<LojaPage />} />
+            <Route path="/loja/obrigado" element={<ObrigadoPage />} />
+            <Route path="/loja/:slug" element={<ProdutoPage />} />
+          </Routes>
+        </main>
+        <Footer />
+        <Toaster />
+        <WhatsAppFloatButton />
+      </CartProvider>
+    </BrowserRouter>
   );
 }

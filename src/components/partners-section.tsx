@@ -3,13 +3,25 @@ interface Partner {
   logo: string;
   /** Compensa arquivos com mais espaço em branco ao redor do desenho. */
   scale?: number;
+  /**
+   * Para logos com partes brancas/transparentes que somem no fundo claro:
+   * aplica um contorno escuro (drop-shadow) sem alterar nenhum pixel/cor
+   * original da imagem.
+   */
+  outline?: boolean;
 }
 
 const partners: Partner[] = [
-  { name: "Instituto DNZ", logo: "/partners/logo_institutodnz.png", scale: 1.6 },
+  { name: "Instituto DNZ", logo: "/partners/logo_institutodnz.png", scale: 1.8 },
   { name: "Dr. Luiz", logo: "/partners/logo_drluiz.webp" },
   { name: "Varanda Sem Roldanas", logo: "/partners/logo_varanda_sem_roldanas.webp" },
+  { name: "Uni Imóveis Guarapari", logo: "/partners/logo_uniimoveis.png", scale: 1.3 },
+  { name: "Espírito Santo Imóveis", logo: "/partners/logo_esimoveis.png", scale: 1.3, outline: true },
 ];
+
+const outlineDropShadow = [0.5, -0.5].flatMap((x) =>
+  [0.5, -0.5].map((y) => `drop-shadow(${x}px ${y}px 0 rgba(0,0,0,0.55))`)
+).join(" ");
 
 function PartnerLogo({ partner }: { partner: Partner }) {
   return (
@@ -17,7 +29,10 @@ function PartnerLogo({ partner }: { partner: Partner }) {
       <img
         src={partner.logo}
         alt={partner.name}
-        style={{ transform: `scale(${partner.scale ?? 1})` }}
+        style={{
+          transform: `scale(${partner.scale ?? 1})`,
+          filter: partner.outline ? outlineDropShadow : undefined,
+        }}
         className="max-h-14 w-auto object-contain grayscale opacity-70 transition hover:grayscale-0 hover:opacity-100"
       />
     </div>

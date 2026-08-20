@@ -1,8 +1,10 @@
 import { useState, useEffect, type MouseEvent } from "react";
 import { Menu, X } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Logo } from "./logo";
 import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "./ui/sheet";
+import { CartSheet } from "./cart-sheet";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
@@ -16,6 +18,8 @@ const navLinks = [
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,11 +31,17 @@ export function Header() {
 
   const handleLinkClick = (e: MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     e.preventDefault();
+    setMobileMenuOpen(false);
+
+    if (location.pathname !== "/") {
+      navigate(`/#${sectionId}`);
+      return;
+    }
+
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
     }
-    setMobileMenuOpen(false);
   }
 
   return (
@@ -43,10 +53,10 @@ export function Header() {
     >
       <div className="container mx-auto px-4 max-w-full">
         <div className="flex h-20 items-center justify-between">
-          <a href="#home" onClick={(e) => handleLinkClick(e, "home")}>
+          <Link to="/" onClick={() => setMobileMenuOpen(false)}>
             <Logo />
             <span className="sr-only">MecaAutomace Início</span>
-          </a>
+          </Link>
 
           <nav className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
@@ -59,15 +69,20 @@ export function Header() {
                 {link.label}
               </a>
             ))}
+            <Link to="/loja" className="font-medium text-foreground/80 hover:text-primary transition-colors">
+              Loja
+            </Link>
           </nav>
-          
-          <div className="hidden md:block">
+
+          <div className="hidden md:flex items-center gap-2">
+            <CartSheet />
             <Button asChild variant="ghost">
               <a href="#contact" onClick={(e) => handleLinkClick(e, "contact")}>Solicitar Orçamento</a>
             </Button>
           </div>
 
-          <div className="md:hidden">
+          <div className="flex items-center gap-1 md:hidden">
+            <CartSheet />
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon">
@@ -101,6 +116,13 @@ export function Header() {
                         {link.label}
                       </a>
                     ))}
+                    <Link
+                      to="/loja"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="text-lg font-medium text-foreground/80 hover:text-primary transition-colors"
+                    >
+                      Loja
+                    </Link>
                     <Button asChild variant="default" className="mt-4">
                       <a href="#contact" onClick={(e) => handleLinkClick(e, "contact")}>Solicitar Orçamento</a>
                     </Button>

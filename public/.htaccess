@@ -1,0 +1,10 @@
+RewriteEngine On
+RewriteBase /
+
+# Não reescreve arquivos e pastas que existem de fato (assets, imagens, etc)
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Qualquer outra rota cai no index.html (SPA — react-router assume a partir daí)
+RewriteRule ^ index.html [L]
