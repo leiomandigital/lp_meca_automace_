@@ -81,9 +81,16 @@ export function LojaPage() {
         )}
 
         {!carregando && !erro && produtosFiltrados && produtosFiltrados.length === 0 && (
-          <p className="text-center text-muted-foreground">
-            Nenhum fluxo encontrado nessa categoria ainda.
-          </p>
+          <div className="text-center py-16">
+            <p className="text-lg font-medium text-foreground mb-2">
+              {categoriaAtiva === "Todas"
+                ? "Estamos preparando os primeiros fluxos da loja."
+                : `Ainda não temos fluxos na categoria "${categoriaAtiva}".`}
+            </p>
+            <p className="text-muted-foreground">
+              Volte em breve — novidades chegando por aqui.
+            </p>
+          </div>
         )}
 
         {!carregando && !erro && produtosFiltrados && produtosFiltrados.length > 0 && (

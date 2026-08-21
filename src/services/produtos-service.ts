@@ -55,7 +55,16 @@ async function buscarTodos(): Promise<ProdutoPublico[]> {
       throw new ProdutosError("Não foi possível carregar o catálogo no momento.");
     }
 
-    const rows = (await response.json()) as ProdutoRow[];
+    let body: unknown;
+    try {
+      body = await response.json();
+    } catch {
+      body = [];
+    }
+
+    // O webhook pode devolver algo diferente de um array quando não há produtos
+    // (ex: objeto vazio, string vazia) — tratamos como catálogo vazio, não como erro.
+    const rows = Array.isArray(body) ? (body as ProdutoRow[]) : [];
     const produtos = rows.map(mapearProduto).filter((produto) => produto.ativo);
     cache = produtos;
     return produtos;
