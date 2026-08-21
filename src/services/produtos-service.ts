@@ -16,7 +16,7 @@ interface ProdutoRow {
   categoria: CategoriaProduto;
   preco_centavos: number;
   imagens: string[];
-  video_url: string;
+  video_url: string | null;
   ativo: boolean;
 }
 
@@ -29,7 +29,7 @@ function mapearProduto(row: ProdutoRow): ProdutoPublico {
     categoria: row.categoria,
     precoCentavos: row.preco_centavos,
     imagens: row.imagens ?? [],
-    videoUrl: row.video_url,
+    videoUrl: row.video_url ?? undefined,
     ativo: row.ativo,
   };
 }

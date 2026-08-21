@@ -13,7 +13,8 @@ import { useProduto } from "@/hooks/use-produtos";
 import { useCart } from "@/context/cart-context";
 import { useToast } from "@/hooks/use-toast";
 
-function paraEmbedYoutube(url: string): string | null {
+function paraEmbedYoutube(url: string | null | undefined): string | null {
+  if (!url) return null;
   const match = url.match(/(?:v=|youtu\.be\/)([\w-]{11})/);
   return match ? `https://www.youtube.com/embed/${match[1]}` : null;
 }

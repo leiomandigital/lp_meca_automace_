@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS produtos (
   categoria TEXT NOT NULL CHECK (categoria IN ('Vendas', 'Atendimento', 'Financeiro', 'Marketing', 'Produtividade')),
   preco_centavos INTEGER NOT NULL CHECK (preco_centavos > 0),
   imagens TEXT[] NOT NULL DEFAULT '{}',
-  video_url TEXT NOT NULL,
+  video_url TEXT, -- opcional: card de vídeo só aparece no site quando preenchido
   ativo BOOLEAN NOT NULL DEFAULT true,
   -- Nunca retornados pelo endpoint público de listagem — só o n8n lê essas colunas na entrega
   arquivo_json_url TEXT NOT NULL,
@@ -65,7 +65,7 @@ Campos que o admin precisa preencher ao criar um produto:
 | `categoria` | enum texto | sim | Um dos 5 valores fixos: `Vendas`, `Atendimento`, `Financeiro`, `Marketing`, `Produtividade`. O `CHECK` da tabela rejeita qualquer outro valor. |
 | `preco_centavos` | inteiro | sim | **Sempre em centavos**, nunca float (ex: R$ 49,90 → `4990`). É o valor que o workflow n8n `loja-criar-pedido` usa para validar o pedido — nunca confiar em preço vindo do site. |
 | `imagens` | array de texto | sim (mín. 1) | Caminhos/URLs públicas das imagens do produto, na ordem de exibição no carrossel. Ver seção 4 sobre onde essas imagens ficam hospedadas. |
-| `video_url` | texto | sim | URL de um vídeo YouTube não-listado (o site converte automaticamente para embed a partir de `watch?v=` ou `youtu.be/`). |
+| `video_url` | texto | **não** | Opcional, por decisão de agilidade do MVP: cadastro roda só com imagens por enquanto. Quando preenchido, deve ser uma URL de vídeo YouTube não-listado (o site converte automaticamente para embed a partir de `watch?v=` ou `youtu.be/`). O card de vídeo na página do produto só aparece quando essa coluna não está vazia — deixe `NULL`/vazio se ainda não tiver o vídeo, e edite depois (`UPDATE produtos SET video_url = '...' WHERE slug = '...'`) sem precisar de redeploy do site. |
 | `ativo` | booleano | sim | `true` = aparece na loja. `false` = escondido, mas o histórico de pedidos antigos que venderam esse produto continua íntegro (nunca deletar um produto que já teve venda — só desativar). |
 | `arquivo_json_url` | texto | sim | Link direto (não-adivinhável) para o `.json` do fluxo n8n exportado. **Nunca deve ser servido publicamente nem aparecer em nenhuma resposta HTTP consumida pelo navegador do cliente antes da compra.** |
 | `arquivo_pdf_url` | texto | sim | Link direto (não-adivinhável) do PDF explicativo (pré-requisitos, credenciais, nodes necessários). Mesma regra de sigilo do item acima. |

@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS produtos (
   categoria TEXT NOT NULL CHECK (categoria IN ('Vendas', 'Atendimento', 'Financeiro', 'Marketing', 'Produtividade')),
   preco_centavos INTEGER NOT NULL CHECK (preco_centavos > 0),
   imagens TEXT[] NOT NULL DEFAULT '{}',
-  video_url TEXT NOT NULL,
+  video_url TEXT, -- opcional: card de vídeo só aparece no site quando preenchido
   ativo BOOLEAN NOT NULL DEFAULT true,
   -- Nunca retornados pelo endpoint público de listagem — só o n8n lê essas colunas na entrega
   arquivo_json_url TEXT NOT NULL,

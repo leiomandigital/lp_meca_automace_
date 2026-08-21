@@ -17,7 +17,7 @@ export interface ProdutoPublico {
   categoria: CategoriaProduto;
   precoCentavos: number;
   imagens: string[];
-  videoUrl: string;
+  videoUrl?: string | null;
   ativo: boolean;
 }
 

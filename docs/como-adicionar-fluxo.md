@@ -13,11 +13,15 @@ Tudo o que você precisa mexer fica em dois lugares: a pasta `public/loja/` (ima
    - `qualificacao-leads-2.png`
 4. Coloque os arquivos dentro de `public/loja/`.
 
-## Passo 2 — Preparar o vídeo
+## Passo 2 — Vídeo (opcional, por enquanto fica de fora)
+
+Por questão de agilidade, o cadastro está rodando **só com imagens** — o vídeo é opcional e pode ficar vazio (`NULL`) sem problema. Nesse caso, a página do produto simplesmente não mostra o card de vídeo, só o carrossel de imagens.
+
+Quando quiser adicionar o vídeo de um produto específico (agora ou depois):
 
 - Suba o vídeo demonstrativo no YouTube como **não-listado** (não precisa ser público na busca, só precisa do link).
-- Copie a URL normal do vídeo (`https://www.youtube.com/watch?v=XXXXXXXXXXX`) — o site converte sozinho para o formato de embed, não precisa mexer em nada além de colar essa URL.
-- Alternativa: se preferir hospedar um `.mp4` direto, salve o arquivo em `public/loja/` também e use esse caminho no lugar da URL do YouTube (nesse caso me avise, porque a página de produto hoje só sabe embutir YouTube — precisaria de um ajuste pequeno no código para tocar `.mp4` direto).
+- Copie a URL normal do vídeo (`https://www.youtube.com/watch?v=XXXXXXXXXXX`) — o site converte sozinho para o formato de embed.
+- Grave essa URL na coluna `video_url` do produto (no `INSERT` do Passo 4, ou via `UPDATE produtos SET video_url = '...' WHERE slug = '...'` depois). Assim que essa coluna deixa de estar vazia, o card de vídeo aparece automaticamente na página desse produto — não precisa mexer em código nem fazer novo deploy.
 
 ## Passo 3 — Preparar o `.json` do fluxo e o PDF explicativo
 
@@ -43,7 +47,7 @@ INSERT INTO produtos (
   'Vendas',                                  -- Vendas | Atendimento | Financeiro | Marketing | Produtividade
   4990,                                      -- preço em CENTAVOS — 4990 = R$ 49,90
   ARRAY['/loja/nome-curto-unico-do-fluxo-1.png', '/loja/nome-curto-unico-do-fluxo-2.png'],
-  'https://www.youtube.com/watch?v=XXXXXXXXXXX',
+  NULL,                                       -- video_url é opcional; troque por uma URL do YouTube quando tiver o vídeo
   true,                                       -- false esconde o produto da loja sem apagar os dados
   'https://link-do-storage.com/.../fluxo.json',
   'https://link-do-storage.com/.../instrucoes.pdf'
@@ -68,7 +72,7 @@ Acesse `http://localhost:5173/loja` e confira:
 
 - [ ] O card do novo fluxo aparece no catálogo, na categoria certa
 - [ ] O filtro por categoria funciona com o novo produto
-- [ ] `http://localhost:5173/loja/seu-slug` mostra as imagens no carrossel, o vídeo tocando e a descrição completa
+- [ ] `http://localhost:5173/loja/seu-slug` mostra as imagens no carrossel e a descrição completa (o card de vídeo só aparece se `video_url` estiver preenchido)
 - [ ] "Adicionar ao carrinho" funciona e o preço no carrinho está certo
 - [ ] "Finalizar Compra" → preencher nome/e-mail → o botão tenta redirecionar (vai falhar se o webhook n8n não estiver rodando localmente, mas não deve travar a página)
 
