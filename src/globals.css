@@ -98,6 +98,9 @@ html, body {
 
 #root {
   overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ── Hero blur-in animations ── */
@@ -146,7 +149,7 @@ html, body {
   to   { transform: translateX(-50%); }
 }
 
-.partners-track { animation: partners-marquee 28s linear infinite; }
+.partners-track { animation: partners-marquee 140s linear infinite; }
 
 .partners-marquee:hover .partners-track {
   animation-play-state: paused;

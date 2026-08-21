@@ -1,0 +1,102 @@
+{
+  "name": "loja-listar-produtos",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "GET",
+        "path": "loja-listar-produtos",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "8f2a6c1a-1111-4a1a-9a1a-000000000001",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [-400, 0],
+      "webhookId": "loja-listar-produtos"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT slug, titulo, descricao_curta, descricao_completa, categoria, preco_centavos, imagens, video_url, ativo\nFROM produtos\nWHERE ativo = true\nORDER BY criado_em DESC;",
+        "options": {}
+      },
+      "id": "8f2a6c1a-1111-4a1a-9a1a-000000000002",
+      "name": "Buscar produtos ativos",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [-160, 0],
+      "credentials": {
+        "postgres": {
+          "id": "SUBSTITUA_PELO_ID_DA_SUA_CREDENCIAL_POSTGRES",
+          "name": "Postgres - Meca Automace"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "id": "8f2a6c1a-1111-4a1a-9a1a-000000000003",
+      "name": "Agrupar em uma lista",
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [80, 0]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json.data }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "id": "8f2a6c1a-1111-4a1a-9a1a-000000000004",
+      "name": "Responder com JSON",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [320, 0]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Buscar produtos ativos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar produtos ativos": {
+      "main": [
+        [
+          {
+            "node": "Agrupar em uma lista",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agrupar em uma lista": {
+      "main": [
+        [
+          {
+            "node": "Responder com JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}

@@ -1,4 +1,5 @@
-import { Linkedin, MessageCircle, Instagram } from "lucide-react";
+import { Linkedin, Instagram } from "lucide-react";
+import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
 import { Button } from "./ui/button";
 
 const skillCategories = [
@@ -43,10 +44,15 @@ export function AboutSection() {
               Analista de Automação e Processos | Desenvolvedor Low-Code
             </p>
             <p className="mt-4 text-muted-foreground text-base leading-relaxed max-w-lg">
-              8 anos de experiência em QA e Suporte Técnico, hoje focado em
-              criar soluções inteligentes com n8n, Make e IA. Bacharel em
-              Sistemas de Informação, com histórico Full Stack e visão prática
-              de negócio.
+              Mais de 15 anos de trajetória em tecnologia — de suporte técnico
+              e QA a desenvolvimento Full Stack — hoje dedicados a construir
+              automações de atendimento com IA, integrações entre sistemas e
+              plataformas web sob medida. Já entreguei, do zero ao ar,
+              sistemas em produção como um Sistema de Gerenciamento de
+              Consultas completo para clínica médica e a plataforma do
+              Instituto DNZ, usando n8n, IA e integrações via API. Bacharel em
+              Sistemas de Informação, com visão prática de negócio por trás de
+              cada automação.
             </p>
             <div className="flex gap-3 mt-6">
               <Button variant="outline" size="icon" asChild aria-label="LinkedIn">
@@ -69,11 +75,11 @@ export function AboutSection() {
               </Button>
               <Button variant="outline" size="icon" asChild aria-label="WhatsApp">
                 <a
-                  href="https://wa.me/5527999509227"
+                  href="https://wa.me/5527999509227?text=Ol%C3%A1%2C%20tudo%20bem%3F%20Vim%20do%20seu%20site%20e%20quero%20mais%20informa%C3%A7%C3%B5es."
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <MessageCircle className="h-5 w-5" />
+                  <WhatsAppIcon className="h-5 w-5" />
                 </a>
               </Button>
             </div>

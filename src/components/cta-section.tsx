@@ -1,4 +1,5 @@
-import { MessageCircle, ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
 import { Button } from "./ui/button";
 
 const trustPoints = [
@@ -42,11 +43,11 @@ export function CTASection() {
             asChild
           >
             <a
-              href="https://wa.me/5527999509227?text=Olá!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20automação."
+              href="https://wa.me/5527999509227?text=Ol%C3%A1%2C%20tudo%20bem%3F%20Vim%20do%20seu%20site%20e%20quero%20mais%20informa%C3%A7%C3%B5es."
               target="_blank"
               rel="noopener noreferrer"
             >
-              <MessageCircle className="mr-2 h-5 w-5" />
+              <WhatsAppIcon className="mr-2 h-5 w-5" />
               Falar no WhatsApp
             </a>
           </Button>
